@@ -13,6 +13,15 @@ from openzeppelin.token.erc20.library import ERC20
 
 from openzeppelin.access.ownable import Ownable
 
+from starkware.cairo.common.alloc import alloc
+
+
+# Keeps list of breeders 
+
+@storage_var
+func allow_list(account : felt) -> (level : felt):
+end
+
 @constructor
 func constructor{
         syscall_ptr: felt*,
@@ -106,6 +115,15 @@ func owner{
     return (owner)
 end
 
+@view
+func allowlist_level{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(account : felt) -> (level : felt):
+    
+    # get allowlist level
+    let (level) = allow_list.read(account)
+
+    return (level)
+end
+
 #
 # Externals
 #
@@ -171,6 +189,13 @@ func mint{
         range_check_ptr
     }(to: felt, amount: Uint256):
 #    Ownable.assert_only_owner()
+
+    let (is_allowed) = allow_list.read(account=to)
+
+    with_attr error_message("Not in allowlist"):
+        assert is_allowed = 1
+    end
+
     ERC20._mint(to, amount)
     return ()
 end
@@ -185,6 +210,7 @@ func get_tokens{
 
     let (to) = get_caller_address()
 
+    # fix amount depends on sum
     let amount = Uint256(low=100, high=0) 
 
     mint(to, amount)
@@ -210,4 +236,21 @@ func renounceOwnership{
     }():
     Ownable.renounce_ownership()
     return ()
+end
+
+@external
+func request_allowlist{
+        pedersen_ptr: HashBuiltin*,
+        syscall_ptr: felt*,
+        range_check_ptr
+    }() -> (level_granted : felt):
+
+   # Check that the caller is not zero
+    let (caller_address) = get_caller_address()
+
+    let (contract_address) = get_contract_address()
+
+    # Register as breeder
+    allow_list.write(account=caller_address, value=1)
+    return (level_granted=1)
 end

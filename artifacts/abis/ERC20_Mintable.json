@@ -201,6 +201,23 @@
     {
         "inputs": [
             {
+                "name": "account",
+                "type": "felt"
+            }
+        ],
+        "name": "allowlist_level",
+        "outputs": [
+            {
+                "name": "level",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "name": "recipient",
                 "type": "felt"
             },
@@ -343,6 +360,17 @@
         "inputs": [],
         "name": "renounceOwnership",
         "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "request_allowlist",
+        "outputs": [
+            {
+                "name": "level_granted",
+                "type": "felt"
+            }
+        ],
         "type": "function"
     }
 ]
