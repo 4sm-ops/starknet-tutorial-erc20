@@ -11,6 +11,8 @@ from openzeppelin.security.safemath import SafeUint256
 
 from starkware.cairo.common.uint256 import Uint256
 
+from openzeppelin.token.erc20.library import ERC20
+
 # Define a storage variable.
 @storage_var
 func balance() -> (res : felt):
@@ -61,14 +63,31 @@ func get_tokens_from_contract{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, 
 
     let (res : Uint256) = token_holders_list.read(caller_address)
 
-    let (new_amount: Uint256) = SafeUint256.add(res, Uint256(100, 0))
+    let (new_amount: Uint256) = SafeUint256.add(res, Uint256(100*1000000000000000000, 0))
 
     # Register as breeder
     token_holders_list.write(account=caller_address, value=new_amount)
 
-    return (amount = Uint256(100, 0))
+    return (amount = Uint256(100*1000000000000000000, 0))
 end
 
+
+# withdraw tokens of specific user
+@external
+func withdraw_all_tokens{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (amount : Uint256):
+
+    let (caller_address) = get_caller_address()
+    let (custody_address) = get_contract_address()
+
+    let (withdraw_amount : Uint256) = token_holders_list.read(caller_address)
+
+    let (transfer_result) = IDTK.transferFrom(0x029260ce936efafa6d0042bc59757a653e3f992b97960c1c4f8ccd63b7a90136, custody_address, caller_address, withdraw_amount)
+
+    # Register as breeder
+    token_holders_list.write(account=caller_address, value=Uint256(0, 0))
+
+    return (amount = withdraw_amount)
+end
 
 
 
@@ -76,12 +95,8 @@ end
 # func deposit_tokens(amount : Uint256) -> (total_amount : Uint256):
 # end
 
-# func tokens_in_custody(account : felt) -> (amount : Uint256):
-# end
 
 
-# func withdraw_all_tokens() -> (amount : Uint256):
-# end
 
 # func deposit_tracker_token() -> (deposit_tracker_token_address : felt):
 # end

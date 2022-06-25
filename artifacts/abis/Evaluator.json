@@ -1,0 +1,338 @@
+[
+    {
+        "members": [
+            {
+                "name": "low",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "high",
+                "offset": 1,
+                "type": "felt"
+            }
+        ],
+        "name": "Uint256",
+        "size": 2,
+        "type": "struct"
+    },
+    {
+        "inputs": [],
+        "name": "tuto_erc20_address",
+        "outputs": [
+            {
+                "name": "_tuto_erc20_address",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "players_registry",
+        "outputs": [
+            {
+                "name": "_players_registry",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "account",
+                "type": "felt"
+            },
+            {
+                "name": "exercise_id",
+                "type": "felt"
+            }
+        ],
+        "name": "has_validated_exercise",
+        "outputs": [
+            {
+                "name": "has_validated_exercise",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "next_rank",
+        "outputs": [
+            {
+                "name": "next_rank",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "player_address",
+                "type": "felt"
+            }
+        ],
+        "name": "assigned_rank",
+        "outputs": [
+            {
+                "name": "rank",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "account",
+                "type": "felt"
+            },
+            {
+                "name": "permission",
+                "type": "felt"
+            }
+        ],
+        "name": "set_teacher",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "account",
+                "type": "felt"
+            }
+        ],
+        "name": "is_teacher",
+        "outputs": [
+            {
+                "name": "permission",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "values_len",
+                "type": "felt"
+            },
+            {
+                "name": "values",
+                "type": "felt*"
+            },
+            {
+                "name": "column",
+                "type": "felt"
+            }
+        ],
+        "name": "set_random_values",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "dummy_token_address",
+        "outputs": [
+            {
+                "name": "account",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "player_address",
+                "type": "felt"
+            },
+            {
+                "name": "part",
+                "type": "felt"
+            }
+        ],
+        "name": "player_exercise_solution",
+        "outputs": [
+            {
+                "name": "contract_address",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "player_address",
+                "type": "felt"
+            }
+        ],
+        "name": "read_ticker",
+        "outputs": [
+            {
+                "name": "ticker",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "player_address",
+                "type": "felt"
+            }
+        ],
+        "name": "read_supply",
+        "outputs": [
+            {
+                "name": "supply",
+                "type": "Uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_players_registry",
+                "type": "felt"
+            },
+            {
+                "name": "_tuto_erc20_address",
+                "type": "felt"
+            },
+            {
+                "name": "_dummy_token_address",
+                "type": "felt"
+            },
+            {
+                "name": "_workshop_id",
+                "type": "felt"
+            },
+            {
+                "name": "_first_teacher",
+                "type": "felt"
+            }
+        ],
+        "name": "constructor",
+        "outputs": [],
+        "type": "constructor"
+    },
+    {
+        "inputs": [],
+        "name": "ex1_assign_rank",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex2_test_erc20",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex3_test_get_tokens",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex4_5_6_test_fencing",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex7_8_9_test_fencing_levels",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex10_claimed_tokens",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex11_claimed_from_contract",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex12_withdraw_from_contract",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex13_approved_exercise_solution",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex14_revoked_exercise_solution",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex15_deposit_tokens",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex16_17_deposit_and_mint",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ex18_withdraw_and_burn",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "erc20_address",
+                "type": "felt"
+            }
+        ],
+        "name": "submit_erc20_solution",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "exercise_address",
+                "type": "felt"
+            }
+        ],
+        "name": "submit_exercise_solution",
+        "outputs": [],
+        "type": "function"
+    }
+]

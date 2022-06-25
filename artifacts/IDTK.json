@@ -20,15 +20,31 @@
             "__main__.IDTK": {
                 "type": "namespace"
             },
+            "__main__.IDTK.ALLOWANCE_SELECTOR": {
+                "type": "const",
+                "value": 863164345921111744606866654754108663958095967665259696902984674202985078753
+            },
+            "__main__.IDTK.APPROVE_SELECTOR": {
+                "type": "const",
+                "value": 949021990203918389843157787496164629863144228991510976554585288817234167820
+            },
             "__main__.IDTK.Args": {
                 "full_name": "__main__.IDTK.Args",
                 "members": {},
                 "size": 0,
                 "type": "struct"
             },
+            "__main__.IDTK.DECREASEALLOWANCE_SELECTOR": {
+                "type": "const",
+                "value": 754360176482350140461223336362562229330355411926756959576830902425958083918
+            },
             "__main__.IDTK.FAUCET_SELECTOR": {
                 "type": "const",
                 "value": 266671253757258067031296537445059259046009373640588074019835151796744796922
+            },
+            "__main__.IDTK.INCREASEALLOWANCE_SELECTOR": {
+                "type": "const",
+                "value": 644460155311288717647126580909524019901998323292235135474624495746789914243
             },
             "__main__.IDTK.ImplicitArgs": {
                 "full_name": "__main__.IDTK.ImplicitArgs",
@@ -43,6 +59,10 @@
             "__main__.IDTK.SIZEOF_LOCALS": {
                 "type": "const",
                 "value": 0
+            },
+            "__main__.IDTK.TRANSFERFROM_SELECTOR": {
+                "type": "const",
+                "value": 116061167288211781254449158074459916871457383008289084697957612485591092000
             },
             "__main__.IDTK.alloc": {
                 "destination": "starkware.cairo.common.alloc.alloc",
