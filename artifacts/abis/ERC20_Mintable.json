@@ -372,5 +372,21 @@
             }
         ],
         "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "level_requested",
+                "type": "felt"
+            }
+        ],
+        "name": "request_allowlist_level",
+        "outputs": [
+            {
+                "name": "level_granted",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
     }
 ]

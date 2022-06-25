@@ -15,6 +15,8 @@ from openzeppelin.access.ownable import Ownable
 
 from starkware.cairo.common.alloc import alloc
 
+from openzeppelin.security.safemath import SafeUint256
+
 
 # Keeps list of breeders 
 
@@ -190,11 +192,11 @@ func mint{
     }(to: felt, amount: Uint256):
 #    Ownable.assert_only_owner()
 
-    let (is_allowed) = allow_list.read(account=to)
+    # let (is_allowed) = allow_list.read(account=to)
 
-    with_attr error_message("Not in allowlist"):
-        assert is_allowed = 1
-    end
+    # with_attr error_message("Not in allowlist"):
+    #     assert is_allowed = 1
+    # end
 
     ERC20._mint(to, amount)
     return ()
@@ -207,14 +209,21 @@ func get_tokens{
         pedersen_ptr: HashBuiltin*,
         range_check_ptr
     }() -> (amount: Uint256):
+    alloc_locals
 
     let (to) = get_caller_address()
 
-    # fix amount depends on sum
-    let amount = Uint256(low=100, high=0) 
+    let (is_allowed) = allow_list.read(account=to)
 
-    mint(to, amount)
-    return (amount)
+    if is_allowed == 0:
+        mint(to, Uint256(low=0, high=0))
+        return (amount=Uint256(low=0, high=0))
+    else:
+        let (n_amount: Uint256) = SafeUint256.mul(Uint256(low=100, high=0), Uint256(is_allowed, 0))
+        mint(to, n_amount)
+        return (amount=n_amount)
+    end
+
 end
 
 
@@ -248,9 +257,23 @@ func request_allowlist{
    # Check that the caller is not zero
     let (caller_address) = get_caller_address()
 
-    let (contract_address) = get_contract_address()
-
     # Register as breeder
     allow_list.write(account=caller_address, value=1)
     return (level_granted=1)
+end
+
+
+@external
+func request_allowlist_level{
+        pedersen_ptr: HashBuiltin*,
+        syscall_ptr: felt*,
+        range_check_ptr
+    }(level_requested : felt) -> (level_granted : felt):
+
+   # Check that the caller is not zero
+    let (caller_address) = get_caller_address()
+
+    # Register as breeder
+    allow_list.write(account=caller_address, value=level_requested)
+    return (level_granted=level_requested)
 end
