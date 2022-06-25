@@ -17,44 +17,6 @@
         "type": "struct"
     },
     {
-        "data": [
-            {
-                "name": "from_",
-                "type": "felt"
-            },
-            {
-                "name": "to",
-                "type": "felt"
-            },
-            {
-                "name": "value",
-                "type": "Uint256"
-            }
-        ],
-        "keys": [],
-        "name": "Transfer",
-        "type": "event"
-    },
-    {
-        "data": [
-            {
-                "name": "owner",
-                "type": "felt"
-            },
-            {
-                "name": "spender",
-                "type": "felt"
-            },
-            {
-                "name": "value",
-                "type": "Uint256"
-            }
-        ],
-        "keys": [],
-        "name": "Approval",
-        "type": "event"
-    },
-    {
         "inputs": [],
         "name": "get_balance",
         "outputs": [
@@ -78,6 +40,18 @@
             {
                 "name": "amount",
                 "type": "Uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "deposit_tracker_token",
+        "outputs": [
+            {
+                "name": "deposit_tracker_token_address",
+                "type": "felt"
             }
         ],
         "stateMutability": "view",

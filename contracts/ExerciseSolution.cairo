@@ -6,12 +6,13 @@ from starkware.cairo.common.cairo_builtins import HashBuiltin
 from starkware.starknet.common.syscalls import get_contract_address, get_caller_address
 
 from contracts.IDTK import IDTK
+from contracts.ImyERC20 import ImyERC20
 
 from openzeppelin.security.safemath import SafeUint256
 
 from starkware.cairo.common.uint256 import Uint256
 
-from openzeppelin.token.erc20.library import ERC20
+
 
 # Define a storage variable.
 @storage_var
@@ -147,6 +148,8 @@ func deposit_tokens{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_chec
         recipient=contract_address,
         amount=amount
     )
+
+    ImyERC20.mint(0x0522b348c36d563b11cc57f17aacd100393e1b639ff002cb4d4471c2ff5e7b2f, caller_address, amount)
 
     let (old_amount : Uint256) = token_holders_list.read(caller_address)
 
