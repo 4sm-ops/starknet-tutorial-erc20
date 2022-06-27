@@ -26,6 +26,10 @@
                 "size": 0,
                 "type": "struct"
             },
+            "__main__.ImyERC20.BURN_SELECTOR": {
+                "type": "const",
+                "value": 110517590864022483288709273410208099989999878078159056510309951061542994625
+            },
             "__main__.ImyERC20.ImplicitArgs": {
                 "full_name": "__main__.ImyERC20.ImplicitArgs",
                 "members": {},
@@ -43,6 +47,10 @@
             "__main__.ImyERC20.SIZEOF_LOCALS": {
                 "type": "const",
                 "value": 0
+            },
+            "__main__.ImyERC20.TRANSFERFROM_SELECTOR": {
+                "type": "const",
+                "value": 116061167288211781254449158074459916871457383008289084697957612485591092000
             },
             "__main__.ImyERC20.alloc": {
                 "destination": "starkware.cairo.common.alloc.alloc",

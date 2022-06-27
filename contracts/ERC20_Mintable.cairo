@@ -202,6 +202,24 @@ func mint{
     return ()
 end
 
+@external
+func burn{
+        syscall_ptr: felt*,
+        pedersen_ptr: HashBuiltin*,
+        range_check_ptr
+    }(account: felt, amount: Uint256):
+#    Ownable.assert_only_owner()
+
+    # let (is_allowed) = allow_list.read(account=to)
+
+    # with_attr error_message("Not in allowlist"):
+    #     assert is_allowed = 1
+    # end
+
+    ERC20._burn(account, amount)
+    return ()
+end
+
 
 @external
 func get_tokens{

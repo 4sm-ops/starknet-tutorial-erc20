@@ -42,11 +42,11 @@ func tokens_in_custody{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_c
 end
 
 # returns ExerciseSolutionToken address
-# latest ERC20 token address - 0x0522b348c36d563b11cc57f17aacd100393e1b639ff002cb4d4471c2ff5e7b2f 
+# latest ERC20 token address - 0x0715a734e87f0d7fe10439d9a2580ee2a623f02d199afa826f09a54274a0692a 
 
 @view
 func deposit_tracker_token{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (deposit_tracker_token_address : felt):
-    let address = 0x0522b348c36d563b11cc57f17aacd100393e1b639ff002cb4d4471c2ff5e7b2f
+    let address = 0x0715a734e87f0d7fe10439d9a2580ee2a623f02d199afa826f09a54274a0692a
     return (deposit_tracker_token_address = address)
 end
 
@@ -90,11 +90,21 @@ func withdraw_all_tokens{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range
 
     let (withdraw_amount : Uint256) = token_holders_list.read(caller_address)
 
+    # is it burning?
+
+    ImyERC20.burn(
+        contract_address=0x0715a734e87f0d7fe10439d9a2580ee2a623f02d199afa826f09a54274a0692a,
+        account=caller_address,
+        amount=withdraw_amount
+    )
+
+    # Return his token
+
     let (res) = IDTK.approve(0x029260ce936efafa6d0042bc59757a653e3f992b97960c1c4f8ccd63b7a90136, custody_address, withdraw_amount)
 
     let (transfer_result) = IDTK.transferFrom(0x029260ce936efafa6d0042bc59757a653e3f992b97960c1c4f8ccd63b7a90136, custody_address, caller_address, withdraw_amount)
 
-    # Register as breeder
+    # Change balance
     token_holders_list.write(account=caller_address, value=Uint256(0, 0))
 
     return (amount = withdraw_amount)
@@ -149,7 +159,7 @@ func deposit_tokens{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_chec
         amount=amount
     )
 
-    ImyERC20.mint(0x0522b348c36d563b11cc57f17aacd100393e1b639ff002cb4d4471c2ff5e7b2f, caller_address, amount)
+    ImyERC20.mint(0x0715a734e87f0d7fe10439d9a2580ee2a623f02d199afa826f09a54274a0692a, caller_address, amount)
 
     let (old_amount : Uint256) = token_holders_list.read(caller_address)
 
